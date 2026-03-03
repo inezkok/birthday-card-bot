@@ -1,6 +1,14 @@
 # 🎂 Birthday Card Bot
 A lightweight Telegram bot designed to automate the collection of monthly birthday wishes and generate elegant PDF cards. Built with Python, `python-telegram-bot`, and `fpdf2`.
 
+### 📋 THINGS TO IMPROVE / DO:
+
+- Support emojis
+
+- Error handling for unknown commands
+
+- Improve card design
+
 ### ✨ Key Features
 
 - **Memory-Only PDF Generation**: PDFs are generated in RAM and sent directly to Telegram. No files are ever saved on your server/disk.
