@@ -1,4 +1,4 @@
-# bday-card-compiler
+# birthday-card-bot
 Telegram Bot to automate monthly birthday wishes collection and PDF card generation.
 
 ### System Requirements
