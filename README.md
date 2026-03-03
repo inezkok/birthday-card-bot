@@ -1,66 +1,83 @@
-# birthday-card-bot
-Telegram Bot to automate monthly birthday wishes collection and PDF card generation.
+# 🎂 Birthday Card Bot
+A lightweight Telegram bot designed to automate the collection of monthly birthday wishes and generate elegant PDF cards. Built with Python, `python-telegram-bot`, and `fpdf2`.
 
-### System Requirements
+### ✨ Key Features
 
-### Setting up in Virtual Environment
+- **Memory-Only PDF Generation**: PDFs are generated in RAM and sent directly to Telegram. No files are ever saved on your server/disk.
 
- 1. Setup Virtual Environment
-    ```
-    $ python -m venv venv
-    ```
+- **Stability First**: Automatically strips emojis and non-standard characters to prevent PDF generation crashes.
 
- 2. Activate Virtual Environment
-    ```
-    $ source venv/bin/activate
-    ```
+- **Persistent Memory**: Even if the bot restarts, it remembers current wishes and conversation states.
 
- 3. Update pip to latest version
-    ```
-    $ python -m pip install --upgrade pip
-    ```
+- **Admin Privac**y: Only the designated Admin can trigger monthly collections and export cards.
 
- 4. Repeat the above steps to set up the project in the virtual environment
-    Run the following code to deactivate the virtual environment
-    ```
-    $ deactivate
-    ```
+### 🛠️ Installation & Setup
 
- Note: Run all future commands after activating virtual environment to ensure consistencies
+1. **System Requirements**
 
-### Getting Started
+   - Python 3.10+
 
- 1. Install Python Dependencies
+   - A Telegram Bot Token (Get it from [@BotFather](https://t.me/botfather))
 
-    ```
-    $ pip install -r requirements.txt
-    ```
+2. **Virtual Environment Setup**
+   ```bash
+   # Create the environment
+   python -m venv venv
 
- 2. Create the environment file (make a copy of `env.sample` and rename it to `.env`).
-    Add the details for each environment variable.
+   # Activate it (Mac/Linux)
+   source venv/bin/activate
 
-    ```
-    TELEGRAM_BOT_TOKEN=<put_your_telegram_bot_token_here>
-    ADMIN_TELE_HANDLE=<put_your_handle_without_at_here>
-    ```
+   # Activate it (Windows)
+   venv\Scripts\activate
 
- 3. Create the birthdays csv file (make a copy of `birthdays_sample.csv` and rename it to `birthdays.csv`).
-    ```
-    Name,Tele Handle,Birthday
-    Alice,alice_telehandle,5 Dec
-    Bob,bob_telehandle,4 May
-    Charlie,charlie_telehandle,11 Jan
-    ```
+   # Install dependencies
+   pip install --upgrade pip
+   pip install -r requirements.txt
+   ```
+3. **Configuration**
+   Create a `.env` file in the root directory (copy from `.env.sample`):
+   ```
+   TELEGRAM_BOT_TOKEN=<put_your_telegram_bot_token_here>
+   ADMIN_TELE_HANDLE=<put_your_handle_without_at_here>
+   ```
 
- 4. Run the python telegram server
-    ```
-    $ python main.py
-    ```
+4. **Prepare Birthday Data**
+   Create a birthdays.csv file in the root directory:
+   ```
+   Name,Tele Handle,Birthday
+   Alice,alice_tele,15 Jan
+   ob,bob_tele,22 Jan
+   Charlie,charlie_tele,05 Feb
+   ```
+   Note: Ensure the month is a 3-letter abbreviation (Jan, Feb, Mar, etc.).
 
-### Commands
-- `/blast`: (Admin Only) Looks at next month and opens collection.
-- `/write`: Users run this to submit their wishes.
-- `/export`: (Admin Only) Generates PDFs and sends them to you.
+5. **Run the Bot**
+   ```bash
+   python bot.py
+   ```
 
-### Data Maintenance
-The bot saves data in `persistence_data/`. Do not delete this folder unless you want to wipe all unsaved wishes.
+6. **Deactivate virtual environment**
+   ```bash
+   deactivate
+   ```
+
+### 🕹️ How to Use
+| Command | Who | Description |
+| --- | --- | --- |
+| `/start` | Everyone | Initializes the bot and grants permission to message. |
+| `/help` | Everyone | Displays available commands based on user permissions. |
+| `/write` | Friends | Opens a menu to select a "birthday baby" and submit a wish. |
+| `/blast` | **Admin** | Identifies next month's birthdays and opens collection. |
+| `/export` | **Admin** | Generates all PDF cards and sends them to the Admin. |
+| `/clear` | **Admin** | Wipes the current collection memory for a fresh start. |
+
+### 🔧 Maintenance & Handover
+
+- **Persistence Folder**: The `persistence_data/` folder contains the bot's memory. If you are handing this bot over to someone else, delete the `bot_state` file inside this folder to wipe old wishes.
+
+- **Emoji Handling**: The bot is configured to strip emojis from messages. This ensures the PDF generator never crashes. Users are notified of this in the `/help` menu.
+
+- **CSV Updates**: You can update `birthdays.csv` at any time. Run `/blast` again to refresh the list of "birthday babies" for the upcoming month.
+
+### 📄 License
+This project is open-source and free to use for personal birthday celebrations!
